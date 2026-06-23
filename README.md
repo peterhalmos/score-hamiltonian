@@ -19,16 +19,16 @@ is exactly mapped to an adiabatic transport on the associated Score Hamiltonian 
 
 $$\left( \widehat{H}_{t}^{\theta} \right)_{t \in [0,T]}$$ 
 
-for the diffusion time $ t \in [0,T]$ that indexes the process between the endpoints of an initial Gaussian density and a terminal data density. By Thm. 2, this offers a spectral decomposition of diffusion model generation in terms of the misalignment to the initial density $\mu^{(0)}$, the annealing schedule $\dot{t}$, and the Hamiltonian's spectral gap $\Delta(t)$, which constitutes a speed limit for sampling and provides an irreducible floor for the hardness of diffusion model generation.
+for the diffusion time $t \in [0, T]$ that indexes the process between the endpoints of an initial Gaussian density and a terminal data density. By Thm. 2, this offers a spectral decomposition of diffusion model generation in terms of the misalignment to the initial density $\mu^{(0)}$, the annealing schedule $\dot{t}$, and the Hamiltonian's spectral gap $\Delta(t)$, which constitutes a speed limit for sampling and provides an irreducible floor for the hardness of diffusion model generation.
 
-Visually, this also offers a practical spectral view of the reverse process for arbitrary densities learned by diffusion models. As an example, for a simple variance-preserving (Song '21) reverse diffusion one can visualize the eigenfunctions of $\widehat{H}_{t}^{{\theta}}$ and the associated eigenspectrum to analyze the dynamics of the spectrum and the gap $\Delta (t)$ through diffusion time $t \in [0, T]$:
+Visually, this also offers a practical spectral view of the reverse process for arbitrary densities learned by diffusion models. As an example, for a simple variance-preserving (Song '21) reverse diffusion one can visualize the eigenfunctions of $\widehat{H}_{t}^{{\theta}}$ and the associated eigenspectrum to analyze the dynamics of the spectrum and the gap $\Delta (t)$ through diffusion time $t$. The ground state represents the density, the first excited state the hardest bottleneck mode of the density with gap $\Delta (t) = ( E_{1} - E_{0} )(t)$, and the higher excited states representing the higher-order modes resolved during diffusion:
 
 <p align="center">
- <img src="images/adiabatic_eigenmode_evolution.png" alt="Figure 1: Adiabatic Transport on Score Hamiltonian along Diffusion Model Reverse-Generative Process" width="600"/>
+ <img src="images/adiabatic_eigenmode_evolution.png" alt="Figure 1: Adiabatic Transport on Score Hamiltonian along Diffusion Model Reverse-Generative Process" width="400"/>
 </p>
 
 <p align="center">
- <img src="images/adiabatic_eigenspectrum.png" alt="Figure 2: Eigenspectrum of Score Hamiltonian for Generation in Figure 1" width="600"/>
+ <img src="images/adiabatic_eigenspectrum.png" alt="Figure 2: Eigenspectrum of Score Hamiltonian for Generation in Figure 1" width="400"/>
 </p>
 
 ---
