@@ -1,9 +1,44 @@
-# Score Hamiltonian
-
-This repository contains the implementation of the theoretical framework and numerical experiments presented in the paper:
+# The Score Hamiltonian
 
 **"The Score Hamiltonian: Mapping Diffusion Models to Adiabatic Transport"**
 [https://arxiv.org/abs/2606.05217](https://arxiv.org/abs/2606.05217)
 
-### Status
-The full set of numerical experiments -- including the Hamiltonian-Identification experiments (Hydrogen Atom, Coupled Harmonic Oscillator) and the adiabatic diffusion benchmarks -- will be pushed to this repository shortly.
+<p align="center">
+ <img src="images/Figure1.pdf" alt="\textbf{(a.)} Illustration of the adiabatic transport of a diffusion-model across varying $t$. \textbf{(b.)} $\widehat{H}_{\theta}(t)$ encodes the model density $\rho_{\theta,t}$ as the ground state of the time $t$ diffusion model, and the excited states $\psi_{k\geq 1}$ encode the spectrum of $\widehat{H}_{\theta}(t)$ and the associated Langevin generator ${L}_{\theta}(t)$ of the score $\stheta$." width="1200"/>
+</p>
+
+This repository contains the numerical experiments demonstrating the theoretical results proven in the paper on real score-based diffusion models trained on simple and analytically tractable physical and non-physical densities. We introduce the **Score Hamiltonian**
+$$\widehat{H}^\theta = -\nabla^2 + \tfrac{1}{2}\nabla\cdot S^\theta + \tfrac{1}{4}|S^\theta|^2$$
+which is constructed from a diffusion model's inferred score $S^\theta$. When $S^\theta = \nabla \log \rho^{\theta}$ is conservative, this Hamiltonian has as its multplication potential the (negative) quantum potential $Q = -\frac{\nabla^{2}\sqrt{\rho^{\theta}}}{\rho^{\theta}}$ (Madelung 1927, Bohm 1952) of the score's density according to the score-based expansion of the quantum potential (a classical identity, in e.g. Nelson 1966, Fiscaletti 2017, and Sbitnev 2009). 
+
+The ground-state of $\widehat{H}^\theta$ is thus exactly the model's inferred density amplitude $\sqrt{\rho^{\theta}}$, and the paper proves that the annealing process of a diffusion model along $( \rho_t^{\theta} )_{t \in [0,T]}$ can be exactly mapped to an adiabatic transport on the associated Score Hamiltonian schedule $( \hat{H}_t^{\theta} )_{t \in [0,T]}$. By Thm. 2, this offers a spectral decomposition of diffusion model generation in terms of the misalignment to the initial density, the annealing schedule $\dot{t}$, and the Hamiltonian's spectral gap $\Delta(t)$ which constitutes a speed limit for sampling and provides an irreducible floor for the hardness of diffusion model generation. 
+
+<p align="center">
+ <img src="images/adiabatic_eigenmode_evolution.pdf" alt="Figure 1: Adiabatic Transport on Score Hamiltonian along Diffusion Model Reverse-Generative Process" width="1200"/>
+</p>
+
+<p align="center">
+ <img src="images/adiabatic_eigenspectrum.pdf" alt="Figure 2: Eigenspectrum of Score Hamiltonian for Generation in Figure 1" width="1200"/>
+</p>
+
+The project is organized into modular source code and standalone experimentation notebooks. In particular, the source code `src/` contains:
+
+| File | Description |
+| :--- | :--- |
+| `models.py` | Neural network architectures for parametrizing the neural scores $S^{\theta}$. |
+| `hamiltonian.py` | Score Hamiltonian construction, spectral gap estimation, and potential extraction. |
+| `training.py` | Training loops for denoising score matching, implicit score matching, and MLE flows. |
+| `density_sampler.py` | Exact samplers for physical systems (Hydrogen, coupled oscillator, GMMs). |
+| `utils.py` | Generation metrics, reverse Euler-Maruyama SDE samplers, and an adiabatic schedule builder. |
+
+Notebooks resolve `src/` via a `sys.path` insertion at the top of each file, and the experiments of `numerical_experiments/` contain:
+
+| Notebook | Description |
+| :--- | :--- |
+| `HydrogenAtom.ipynb` | Identifies the potential and recovers excited-state energies $E_n = -1/(2n^2)$ and orbital shapes from 1s ground-state samples only via the Score Hamiltonian computed from a network trained via score-matching. |
+| `Coupled_HO.ipynb` | Compares Score Hamiltonian, thermodynamic integration, and Boltzmann generator performance on potential and normal-mode frequency recovery for a 2D coupled oscillator. |
+| `SpectralTest_A.ipynb` | Validates three theoretical bounds on a 2D Gaussian mixture: spectral floor $\propto \epsilon_\theta/\sqrt{\Delta E}$, adiabatic tracking error vs. schedule speed, and the terminal non-conservativity penalty $\propto\sqrt{2\lambda_\theta/\Delta E}$. |
+| `SpectralTest_B.ipynb` | Replication of `SpectralTest_A` with $n=4$ independent runs per condition and exact eigenvalue computation of the ground-state $\lambda_\theta$. |
+| `Eigenmodes_ScoreModel.ipynb` | Visualizes the eigenstates and adiabatic eigenspectrum evolution of $\widehat{H}_\theta$ along the reverse diffusion path on the Two Moons dataset. |
+
+
