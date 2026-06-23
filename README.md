@@ -11,7 +11,7 @@ This repository contains the numerical experiments demonstrating the theoretical
 $$\widehat{H}^\theta = -\nabla^2 + \tfrac{1}{2}\nabla\cdot S^\theta + \tfrac{1}{4}|S^\theta|^2$$
 which is constructed from a diffusion model's inferred score $S^\theta$. When $S^\theta = \nabla \log \rho^{\theta}$ is conservative, this Hamiltonian has as its multplication potential the (negative) quantum potential $Q = -\frac{\nabla^{2}\sqrt{\rho^{\theta}}}{\sqrt{\rho^{\theta}}}$ (Madelung 1927, Bohm 1952) of the score's density according to the score-based expansion of the quantum potential (a classical identity, in e.g. Nelson 1966, Fiscaletti 2017, and Sbitnev 2009). 
 
-The ground-state of $\widehat{H}^\theta$ is thus exactly the model's inferred density amplitude $\sqrt{\rho^{\theta}}$, and our paper proves that the annealing process of a diffusion model along 
+The ground-state of $\widehat{H}^{\theta}$ is thus exactly the model's inferred density amplitude $\sqrt{\rho^{\theta}}$, and our paper proves that the annealing process of a diffusion model along 
 
 $$\left( \rho_{t}^{\theta} \right)_{t \in [0,T]}$$ 
 
