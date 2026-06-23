@@ -4,7 +4,7 @@
 [https://arxiv.org/abs/2606.05217](https://arxiv.org/abs/2606.05217)
 
 <p align="center">
- <img src="images/Figure1.png" alt="\textbf{(a.)} Illustration of the adiabatic transport of a diffusion-model across varying $t$. \textbf{(b.)} $\widehat{H}_{\theta}(t)$ encodes the model density $\rho_{\theta,t}$ as the ground state of the time $t$ diffusion model, and the excited states $\psi_{k\geq 1}$ encode the spectrum of $\widehat{H}_{\theta}(t)$ and the associated Langevin generator ${L}_{\theta}(t)$ of the score $\stheta$." width="1200"/>
+ <img src="images/Figure1.png" alt="\textbf{(a.)} Illustration of the adiabatic transport of a diffusion-model across varying $t$. \textbf{(b.)} $\widehat{H}_{\theta}(t)$ encodes the model density $\rho_{\theta,t}$ as the ground state of the time $t$ diffusion model, and the excited states $\psi_{k\geq 1}$ encode the spectrum of $\widehat{H}_{\theta}(t)$ and the associated Langevin generator ${L}_{\theta}(t)$ of the score $\stheta$." width="800"/>
 </p>
 
 This repository contains the numerical experiments demonstrating the theoretical results proven in the paper on real score-based diffusion models trained on simple and analytically tractable physical and non-physical densities. We introduce the **Score Hamiltonian**
