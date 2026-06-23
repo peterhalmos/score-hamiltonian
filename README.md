@@ -4,21 +4,21 @@
 [https://arxiv.org/abs/2606.05217](https://arxiv.org/abs/2606.05217)
 
 <p align="center">
- <img src="images/Figure1.pdf" alt="\textbf{(a.)} Illustration of the adiabatic transport of a diffusion-model across varying $t$. \textbf{(b.)} $\widehat{H}_{\theta}(t)$ encodes the model density $\rho_{\theta,t}$ as the ground state of the time $t$ diffusion model, and the excited states $\psi_{k\geq 1}$ encode the spectrum of $\widehat{H}_{\theta}(t)$ and the associated Langevin generator ${L}_{\theta}(t)$ of the score $\stheta$." width="1200"/>
+ <img src="images/Figure1.png" alt="\textbf{(a.)} Illustration of the adiabatic transport of a diffusion-model across varying $t$. \textbf{(b.)} $\widehat{H}_{\theta}(t)$ encodes the model density $\rho_{\theta,t}$ as the ground state of the time $t$ diffusion model, and the excited states $\psi_{k\geq 1}$ encode the spectrum of $\widehat{H}_{\theta}(t)$ and the associated Langevin generator ${L}_{\theta}(t)$ of the score $\stheta$." width="1200"/>
 </p>
 
 This repository contains the numerical experiments demonstrating the theoretical results proven in the paper on real score-based diffusion models trained on simple and analytically tractable physical and non-physical densities. We introduce the **Score Hamiltonian**
 $$\widehat{H}^\theta = -\nabla^2 + \tfrac{1}{2}\nabla\cdot S^\theta + \tfrac{1}{4}|S^\theta|^2$$
-which is constructed from a diffusion model's inferred score $S^\theta$. When $S^\theta = \nabla \log \rho^{\theta}$ is conservative, this Hamiltonian has as its multplication potential the (negative) quantum potential $Q = -\frac{\nabla^{2}\sqrt{\rho^{\theta}}}{\rho^{\theta}}$ (Madelung 1927, Bohm 1952) of the score's density according to the score-based expansion of the quantum potential (a classical identity, in e.g. Nelson 1966, Fiscaletti 2017, and Sbitnev 2009). 
+which is constructed from a diffusion model's inferred score $S^\theta$. When $S^\theta = \nabla \log \rho^{\theta}$ is conservative, this Hamiltonian has as its multplication potential the (negative) quantum potential $Q = -\frac{\nabla^{2}\sqrt{\rho^{\theta}}}{\sqrt{\rho^{\theta}}}$ (Madelung 1927, Bohm 1952) of the score's density according to the score-based expansion of the quantum potential (a classical identity, in e.g. Nelson 1966, Fiscaletti 2017, and Sbitnev 2009). 
 
-The ground-state of $\widehat{H}^\theta$ is thus exactly the model's inferred density amplitude $\sqrt{\rho^{\theta}}$, and the paper proves that the annealing process of a diffusion model along $( \rho_t^{\theta} )_{t \in [0,T]}$ can be exactly mapped to an adiabatic transport on the associated Score Hamiltonian schedule $( \hat{H}_t^{\theta} )_{t \in [0,T]}$. By Thm. 2, this offers a spectral decomposition of diffusion model generation in terms of the misalignment to the initial density, the annealing schedule $\dot{t}$, and the Hamiltonian's spectral gap $\Delta(t)$ which constitutes a speed limit for sampling and provides an irreducible floor for the hardness of diffusion model generation. 
+The ground-state of $\widehat{H}^{\theta}$ is thus exactly the model's inferred density amplitude $\sqrt{\rho^{\theta}}$, and our paper proves that the annealing process of a diffusion model along $( \rho_{t}^{\theta} )_{t \in [0,T]}$ is exactly mapped to an adiabatic transport on the associated Score Hamiltonian schedule $( \hat{H}_{t}^{\theta} )_{t \in [0,T]}$. By Thm. 2, this offers a spectral decomposition of diffusion model generation in terms of the misalignment to the initial density $\mu^{(0)}$, the annealing schedule $\dot{t}$, and the Hamiltonian's spectral gap $\Delta(t)$ which constitutes a speed limit for sampling and provides an irreducible floor for the hardness of diffusion model generation. 
 
 <p align="center">
- <img src="images/adiabatic_eigenmode_evolution.pdf" alt="Figure 1: Adiabatic Transport on Score Hamiltonian along Diffusion Model Reverse-Generative Process" width="1200"/>
+ <img src="images/adiabatic_eigenmode_evolution.png" alt="Figure 1: Adiabatic Transport on Score Hamiltonian along Diffusion Model Reverse-Generative Process" width="1200"/>
 </p>
 
 <p align="center">
- <img src="images/adiabatic_eigenspectrum.pdf" alt="Figure 2: Eigenspectrum of Score Hamiltonian for Generation in Figure 1" width="1200"/>
+ <img src="images/adiabatic_eigenspectrum.png" alt="Figure 2: Eigenspectrum of Score Hamiltonian for Generation in Figure 1" width="1200"/>
 </p>
 
 The project is organized into modular source code and standalone experimentation notebooks. In particular, the source code `src/` contains:
